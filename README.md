@@ -34,7 +34,6 @@ The configuration is done through Terraform variables. Example *tfvars* file is 
 | `aws_region` | AWS region which should be used | `eu-east-1` |
 | `lambda_name` | Will be used to name the tagging lambda, its roles etc. | `my-k8s` |
 | `env_vars` | Map for the environment vars to pass to lambda. Currently just `SEARCHTAG` (`key=value`) | `kubernetes.io/cluster/aws-k8s=owned` |
-| `search_tag_value` | The Valur of the tag which determines resources belonging to the application. All resources with matching tag and its value will be tagged with additional tags. | `owned` |
 | `tags` | Tags which should be applied to all resources | `{ Hello = "World" }` |
 
 ### Deploying tagging lambda
@@ -72,6 +71,11 @@ module "tagging-lambda" {
   # Tags
   tags = {
     Hello = "World"
+  }
+  
+  # Lambda env vars
+  env_vars = {
+    SEARCHTAG = "AccountAlias=spicysomtam2"
   }
 }
 ```
