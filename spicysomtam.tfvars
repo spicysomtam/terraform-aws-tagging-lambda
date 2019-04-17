@@ -1,15 +1,14 @@
-
-aws_region    = "us-east-1"
+aws_region    = "eu-west-1"
 
 # Used for naming related resources
-lambda_name  = "my-k8s"
+lambda_name  = "resource_tagger"
 
 # The Key of the tag which determines resources belonging to the application. All resources with matching tag and its value will be tagged with additional tags.
-run_interval = "5"
+run_interval = "2"
 
 # Tags
 tags = {
-  Owner     = "johndoe"
+  NewTag = "true"
 }
 
 # Lambda env vars

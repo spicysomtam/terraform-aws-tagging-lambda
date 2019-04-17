@@ -3,11 +3,14 @@ module "tagging-lambda" {
 
   aws_region        = "eu-east-1"
   name              = "my-application"
-  search_tag_key    = "myAppKey"
-  search_tag_value  = "myAppValue"
 
   # Tags
   tags = {
     Hello = "World"
+  }
+
+  # Lambda env vars
+  env_vars = {
+    SEARCHTAG = "AccountAlias=spicysomtam2"
   }
 }

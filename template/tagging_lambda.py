@@ -2,6 +2,7 @@
 
 import boto3
 import logging
+import os
 
 LOGGER = logging.getLogger()
 LOGGER.setLevel(logging.INFO)
@@ -15,13 +16,9 @@ LOGGER.addHandler(log_handler)
 region = "${aws_region}"
 setTags = ${tags}
 
-if 'Name' not in setTags.keys():
-    setTags['Name'] = "${name}-resource"
-
 # Tag the resources ...
 def lambda_handler(event, context):
-    searchTagKey = '${search_tag_key}'
-    searchTagValue = '${search_tag_value}'
+    (searchTagKey,searchTagValue)= os.environ["SEARCHTAG"].split("=")
     filter = [{'Name':'tag:' + searchTagKey, 'Values':[searchTagValue]}]
 
     ec2 = boto3.resource('ec2', region_name=region)
